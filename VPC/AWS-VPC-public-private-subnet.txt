@@ -1,0 +1,30 @@
+AWS VPC Architecture Overview
+This diagram illustrates a Virtual Private Cloud (VPC) setup in AWS with the following configuration:
+
+VPC Details
+CIDR Range: 192.168.1.0/24 allocated for the VPC.
+Availability Zones (AZs): The VPC spans two Availability Zones (AZ-1 and AZ-2) for high availability.
+Subnet Configuration
+Public Subnets:
+
+Public-Subnet-1 (AZ-1): 192.168.1.0/26
+Contains an App Server with the IP 192.168.1.2.
+Public-Subnet-2 (AZ-2): 192.168.1.64/26
+Contains an App Server with the IP 192.168.1.165.
+Both public subnets are associated with the Public Route Table and are attached to an Internet Gateway (IG) for internet access.
+Private Subnets:
+
+Private-Subnet-1 (AZ-1): 192.168.1.128/26
+Contains an EC2 Database Server with the IP 192.168.1.129.
+Private-Subnet-2 (AZ-2): 192.168.1.192/26
+Contains an EC2 Database Server with the IP 192.168.1.193.
+Both private subnets are associated with the Private Route Table, which does not have a direct connection to the Internet Gateway, ensuring private communication.
+Route Tables
+Public Route Table:
+
+Attached to both public subnets.
+Configured with a route to the Internet Gateway, enabling public access.
+Private Route Table:
+
+Attached to private subnets.
+Does not connect to the Internet Gateway, keeping resources within these subnets isolated and secure.
